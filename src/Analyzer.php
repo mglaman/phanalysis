@@ -36,6 +36,9 @@ class Analyzer {
     if ($stmt instanceof Node\Stmt\Function_) {
       $this->inspectFunction($stmt);
     }
+    elseif ($stmt instanceof Node\Stmt\Namespace_) {
+      $this->inspectStatements($stmt->stmts);
+    }
     elseif ($stmt instanceof Node\Stmt\Expression) {
       $this->inspectExpression($stmt->expr);
     }
@@ -49,10 +52,17 @@ class Analyzer {
     if ($expression instanceof Node\Expr\Print_) {
       $this->inspectNode($expression->expr);
     }
+    elseif ($expression instanceof Node\Expr\Assign) {
+      $this->inspectNode($expression->var);
+      $this->inspectExpression($expression->expr);
+    }
+    elseif ($expression instanceof Node\Expr\FuncCall) {
+      $this->inspectNode($expression);
+    }
   }
 
   protected function inspectNode(Node $node): void {
     $results = $this->chainChecker->check($node);
-    $this->results = array_merge($this->results, $results);
+    $this->results = array_filter(array_merge($this->results, $results));
   }
 }

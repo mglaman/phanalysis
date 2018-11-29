@@ -12,6 +12,7 @@ class ChainedChecker {
 
   public function __construct() {
     $this->checkers[] = new SingleQuoteChecker();
+    $this->checkers[] = new FunctionFullyQualifiedNameChecker();
   }
 
   public function check(Node $node): array {

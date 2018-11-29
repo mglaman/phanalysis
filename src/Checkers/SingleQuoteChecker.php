@@ -17,8 +17,10 @@ class SingleQuoteChecker implements CheckerInterface {
   public function check(Node $node): ?Result {
       \assert($node instanceof String_);
       if ($node->getAttribute('kind') === String_::KIND_DOUBLE_QUOTED) {
-        return new Result('Safely use single quotes instead');
+        return new Result('Safely use single quotes instead', $node->getLine());
       }
+
+      return null;
   }
 
 }
