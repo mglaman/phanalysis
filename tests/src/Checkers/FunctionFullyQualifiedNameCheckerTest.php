@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Phanalysis\Tests;
+namespace Phanalysis\Tests\Checkers;
 
 use Phanalysis\Checkers\FunctionFullyQualifiedNameChecker;
 use PhpParser\Node\Expr\FuncCall;

@@ -34,7 +34,7 @@ class Analyzer {
 
   protected function inspectStatement(Node\Stmt $stmt): void {
     if ($stmt instanceof Node\Stmt\Function_) {
-      $this->inspectFunction($stmt);
+      $this->inspectStatements($stmt->stmts);
     }
     elseif ($stmt instanceof Node\Stmt\Namespace_) {
       $this->inspectStatements($stmt->stmts);
@@ -42,10 +42,14 @@ class Analyzer {
     elseif ($stmt instanceof Node\Stmt\Expression) {
       $this->inspectExpression($stmt->expr);
     }
-  }
-
-  protected function inspectFunction(Node\Stmt\Function_ $function_): void {
-    $this->inspectStatements($function_->getStmts());
+    elseif ($stmt instanceof Node\Stmt\If_) {
+      $this->inspectExpression($stmt->cond);
+      $this->inspectStatements($stmt->stmts);
+    }
+    elseif ($stmt instanceof Node\Stmt\ElseIf_) {
+      $this->inspectExpression($stmt->cond);
+      $this->inspectStatements($stmt->stmts);
+    }
   }
 
   protected function inspectExpression(Node\Expr $expression): void {
@@ -58,6 +62,10 @@ class Analyzer {
     }
     elseif ($expression instanceof Node\Expr\FuncCall) {
       $this->inspectNode($expression);
+    }
+    elseif ($expression instanceof Node\Expr\BinaryOp) {
+      $this->inspectNode($expression->left);
+      $this->inspectNode($expression->right);
     }
   }
 

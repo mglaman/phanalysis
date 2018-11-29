@@ -20,6 +20,7 @@ class FunctionFullyQualifiedNameChecker implements CheckerInterface {
       return null;
     }
 
+    // @todo this should only fire if the parent node is in a namespace.
     return new Result(
       'Functions should use their fully qualified name for better opcache performance. Replace with \\' . $node->name,
       $node->getLine()

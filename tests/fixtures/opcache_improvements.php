@@ -13,3 +13,10 @@ function opcache_improvements_ffqn() {
   $array = [1,2,3,4,5];
   $count = \count($array);
 }
+
+function detect_in_condition() {
+  $array = [1,2,3,4,5];
+  if (count($array) > 1) {
+    // Do something.
+  }
+}
