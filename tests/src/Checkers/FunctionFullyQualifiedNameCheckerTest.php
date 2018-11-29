@@ -24,7 +24,7 @@ class FunctionFullyQualifiedNameCheckerTest extends TestCase {
     $result = $checker->check($unqualified_func_call);
 
     $this->assertEquals(
-      '10: Functions should use their fully qualified name for better opcache performance. Replace with \\funcName',
+      '10: Use fully qualified name for better opcache performance. Replace with \\funcName',
       $result->getMessage()
     );
 

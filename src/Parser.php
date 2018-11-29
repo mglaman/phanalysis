@@ -6,14 +6,17 @@ namespace Phanalysis;
 
 use PhpParser\ParserFactory;
 
-final class Parser {
-  private $parser;
+final class Parser
+{
+    private $parser;
 
-  public function __construct() {
-    $this->parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
-  }
+    public function __construct()
+    {
+        $this->parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
+    }
 
-  public function parseFile(string $path): SourceFile {
-    return new SourceFile($path, $this->parser);
-  }
+    public function parseFile(string $path): SourceFile
+    {
+        return new SourceFile($path, $this->parser);
+    }
 }

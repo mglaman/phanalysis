@@ -13,3 +13,6 @@ before_install:
   - composer global require "hirak/prestissimo:^0.3"
 install:
   - composer install --no-interaction
+script:
+  - composer cs
+  - composer test
