@@ -1,0 +1,22 @@
+{
+    "name": "mglaman/phanalysis",
+    "description": "Static analysis tool",
+    "license": "MIT",
+    "require": {
+        "nikic/php-parser": "^4.1"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "phpunit/phpunit": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phanalysis\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Phanalysis\\Tests\\": "tests/src"
+        }
+    }
+}
